@@ -1,15 +1,19 @@
 angular.module('curateHealthDashboard.services')
-.factory('Comments', function() {
+.factory('Quandl', function($http, $q) {
 
-  var Comments = {};
+  var Quandl = {};
 
-  Comments.get = function(facilityId) {
-    var comments = [];
-    comments.push(Comments.generateComment(-1))
-    return comments;
+  Quandl.search = function(query) {
+    var deferred = $q.defer();
+    $http.get("https://www.quandl.com/api/v1/datasets.json?query=" + query).success(function(data) {
+      deferred.resolve(data);
+    }).error(function() {
+      deferred.reject(data);
+    });
+    return deferred.promise;
   };
 
-  Comments.generateComment = function(polarity) {
+  Quandl.generateComment = function(polarity) {
     var negComment = { 
       firstName: "Grayson",
       lastName: "Carroll",
@@ -20,11 +24,10 @@ angular.module('curateHealthDashboard.services')
       confidence: 0.5
     };
 
-
     return negComment;
   };
 
-  return Comments;
+  return Quandl;
 });
 
 

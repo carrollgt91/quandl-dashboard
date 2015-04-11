@@ -1,19 +1,15 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-3 col-sm-4 col-xs-6">
-      <div class="branding">
-        <img class="img-responsive" src="img/CurateHealth-Logo.jpg" alt="Curate Health Logo">
-      </div>     
-    </div>
-  </div>
-</div>
-
-<div class="container">
-  <div class="row">
     <div class="col-md-8 col-sm-12 col-xs-12">
-      <h2>Sentiment Dashboard</h2>
-      <h4 class="center">{{facility.name}}</h4>
+      <h2>Search Quandl</h2>
+      <input type="text" ng-model="query">
     </div>
+    <ul>
+      <li ng-repeat="doc in docs">
+        <div>{{doc.name}}</div>
+        <p>{{docdescription}}</p>
+      </li>
+    </ul>
   </div> 
 </div>
 
